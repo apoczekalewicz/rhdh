@@ -1,0 +1,10 @@
+1. One form (for Name and Greeter)
+
+2. Greeter: 
+   - value can be only from the list of groups available in RHDH Catalog
+
+3. Name:
+   - Must begin with a capital letter
+   - Only letters, numbers or underscores
+   - Max 5 chars
+
