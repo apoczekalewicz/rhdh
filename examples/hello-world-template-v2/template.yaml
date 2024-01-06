@@ -1,0 +1,38 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: my-first-template
+  title: Hello World
+  description: A simple Hello World example.
+spec:
+  owner: rhdh
+  type: service
+ 
+  parameters:
+    - title: Enter the values for name and greeter
+      required:
+        - name
+        - greeter
+      properties:
+        name:
+          type: string
+          default: World
+          maxLength: 5
+          pattern: '^[A-Z][A-Za-z0-9_]*$'
+          ui:help: 'Hint: name must begin with a capital letter, include only letters (upper or lower case), numbers, or underscores, and the maximum length can only be 5 letters.'
+        greeter:
+          type: string
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+
+  steps:
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: 'Hello, ${{ parameters.name }} from ${{ parameters.greeter }}!'
+  
+  output:
+    message: 'The parameters you provided are: ${{ parameters.name }} and ${{ parameters.greeter }}'
